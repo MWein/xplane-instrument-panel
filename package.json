@@ -1,0 +1,14 @@
+{
+  "name": "xplane-instrument-panel",
+  "version": "1.0.0",
+  "description": "Custom Instrument Panel for use with X-Plane",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/electron/electron-quick-start",
+  "author": "Mike Weinberg",
+  "devDependencies": {
+    "electron": "^8.2.1"
+  }
+}
