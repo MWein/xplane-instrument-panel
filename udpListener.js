@@ -1,4 +1,4 @@
-const verticalAirspeedIndicatorSVG = require('./instruments/verticalAirspeed')
+const setVerticalSpeedIndicator = require('./instruments/verticalSpeed')
 
 const PORT = 49003
 const HOST = '127.0.0.1'
@@ -30,7 +30,7 @@ server.on('message', (buffer, remote) => {
 
  // Graphics
  if (type === 'sim/flightmodel/position/vh_ind_fpm') {
-   setVerticalAirspeedIndicator(value)
+   setVerticalSpeedIndicator(value)
  }
 
 

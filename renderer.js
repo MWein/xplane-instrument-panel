@@ -1,5 +1,7 @@
 require('./udpListener')
 
 // Initial Gauges
-const setVerticalAirspeedIndicator = require('./instruments/verticalAirspeed')
-setVerticalAirspeedIndicator(0)
+
+// Vertical Speed Indicator
+const setVerticalSpeedIndicator = require('./instruments/verticalSpeed')
+setVerticalSpeedIndicator(0)
