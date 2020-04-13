@@ -1,4 +1,5 @@
 const setVerticalSpeedIndicator = require('./instruments/verticalSpeed')
+const setHeadingIndicator = require('./instruments/headingIndicator')
 
 const PORT = 49003
 const HOST = '127.0.0.1'
@@ -31,6 +32,10 @@ server.on('message', (buffer, remote) => {
  // Graphics
  if (type === 'sim/flightmodel/position/vh_ind_fpm') {
    setVerticalSpeedIndicator(value)
+ }
+
+ if (type === 'sim/cockpit2/gauges/indicators/heading_vacuum_deg_mag_pilot') {
+   setHeadingIndicator(value)
  }
 
 

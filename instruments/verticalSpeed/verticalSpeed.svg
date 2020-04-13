@@ -1,11 +1,11 @@
-<svg height="500" width="500" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+<svg height="400" width="400" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
 	<style>
-    .number { font: bold 40px sans-serif; fill: white; }
+    .vs { font: bold 40px sans-serif; fill: white; }
     .vertspeed { font: bold 20px sans-serif; fill: white; }
     .ftpermin { font: bold 15px sans-serif; fill: white; }
-    .updn { font: bold 18px sans-serif; fill: white; }
-    .needle { fill: white; }
-    .needlecenter { fill: #383838; }
+    .vsupdn { font: bold 18px sans-serif; fill: white; }
+    .vsneedle { fill: white; }
+    .vsneedlecenter { fill: #383838; }
   </style>
 
 
@@ -17,7 +17,7 @@
 
     <line id="lgtick" x1="11" y1="250" x2="60" y2="250" stroke-linecap="round" stroke-width="3" stroke="white" />
 
-    <polygon id="updnarrow" points="243,250 257,250 250,200" />
+    <polygon id="vsupdnarrow" points="243,250 257,250 250,200" />
 
     <linearGradient id="frameouter" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%"   stop-color="grey"/>
@@ -79,19 +79,19 @@
 
 
   <!-- Up and Down Arrows -->
-  <use href="#updnarrow" style="fill:green" transform="translate(-145 -20) rotate(15, 250, 250)" />
-  <use href="#updnarrow" style="fill:red" transform="translate(-145, 20) rotate(165, 250, 250)" />
+  <use href="#vsupdnarrow" style="fill:green" transform="translate(-145 -20) rotate(15, 250, 250)" />
+  <use href="#vsupdnarrow" style="fill:red" transform="translate(-145, 20) rotate(165, 250, 250)" />
 
 
-  <!-- Dial Numbers -->
-  <text x="70" y="264" class="number">0</text>
-  <text x="105" y="170" class="number">5</text>
-  <text x="105" y="370" class="number">5</text>
-  <text x="165" y="110" class="number">10</text>
-  <text x="165" y="410" class="number">10</text>
-  <text x="310" y="130" class="number">15</text>
-  <text x="310" y="400" class="number">15</text>
-  <text x="385" y="264" class="number">20</text>
+  <!-- Dial vss -->
+  <text x="70" y="264" class="vs">0</text>
+  <text x="105" y="170" class="vs">5</text>
+  <text x="105" y="370" class="vs">5</text>
+  <text x="165" y="110" class="vs">10</text>
+  <text x="165" y="410" class="vs">10</text>
+  <text x="310" y="130" class="vs">15</text>
+  <text x="310" y="400" class="vs">15</text>
+  <text x="385" y="264" class="vs">20</text>
 
 
   <!-- Text -->
@@ -105,20 +105,20 @@
       <text class="ftpermin" y="22">PER MIN</text>
   </g>
 
-  <text class="updn" x="125" y="200">UP</text>
-  <text class="updn" x="125" y="310">DN</text>
+  <text class="vsupdn" x="125" y="200">UP</text>
+  <text class="vsupdn" x="125" y="310">DN</text>
 
 
   <!-- Needle -->
   <g transform="rotate(__rotate__, 250, 250)">
     <!-- Needle -->
-    <polygon points="30,250 50,255 210,255 210,245 50,245" class="needle" />
+    <polygon points="30,250 50,255 210,255 210,245 50,245" class="vsneedle" />
 
     <!-- Center -->
-    <polygon points="210,255 210,245 290,245 290,255" class="needlecenter" />
-    <circle cx="250" cy="250" r="10" class="needlecenter" />
+    <polygon points="210,255 210,245 290,245 290,255" class="vsneedlecenter" />
+    <circle cx="250" cy="250" r="10" class="vsneedlecenter" />
     <circle cx="250" cy="250" r="5" fill="black" />
-    <circle cx="290" cy="250" r="10" class="needlecenter" />
+    <circle cx="290" cy="250" r="10" class="vsneedlecenter" />
   </g>
 
 
