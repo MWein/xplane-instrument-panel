@@ -8,11 +8,16 @@ const dgram = require('dgram');
 const server = dgram.createSocket('udp4')
 
 
+const updateFunctionMap = {
+  'sim/flightmodel/position/vh_ind_fpm': setVerticalSpeedIndicator,
+  'sim/cockpit2/gauges/indicators/heading_vacuum_deg_mag_pilot': setHeadingIndicator
+}
+
 const typeElementIDMap = {
   'sim/cockpit2/gauges/indicators/altitude_ft_pilot': 'altitude',
   'sim/cockpit2/gauges/indicators/airspeed_kts_pilot': 'airspeed',
-  'sim/cockpit2/gauges/indicators/heading_vacuum_deg_mag_pilot': 'heading',
-  'sim/flightmodel/position/vh_ind_fpm': 'vertairspeed',
+  //'sim/cockpit2/gauges/indicators/heading_vacuum_deg_mag_pilot': 'heading',
+  //'sim/flightmodel/position/vh_ind_fpm': 'vertairspeed',
   'sim/cockpit2/engine/indicators/engine_speed_rpm[0]': 'rpm',
   'sim/cockpit2/gauges/indicators/slip_deg': 'ball',
   'sim/cockpit2/gauges/indicators/turn_rate_heading_deg_pilot': 'bankindicator',
@@ -22,26 +27,22 @@ const typeElementIDMap = {
 }
 
 server.on('message', (buffer, remote) => {
- // Buffer includes space characters that aren't handled by trim()
- const type = buffer.slice(9, buffer.length).toString().replace(/\0/g, '')
- const value = buffer.slice(5, 9).readFloatLE(0)
+  // Buffer includes space characters that aren't handled by trim()
+  const type = buffer.slice(9, buffer.length).toString().replace(/\0/g, '')
+  const value = buffer.slice(5, 9).readFloatLE(0)
 
- const elementId = typeElementIDMap[type] || 'unsupported'
+  const elementId = typeElementIDMap[type] || 'unsupported'
+  const updateFunction = updateFunctionMap[type] || 'unsupported'
 
+  // Graphics
+  if (updateFunction !== 'unsupported') {
+    updateFunction(value)
+  }
 
- // Graphics
- if (type === 'sim/flightmodel/position/vh_ind_fpm') {
-   setVerticalSpeedIndicator(value)
- }
-
- if (type === 'sim/cockpit2/gauges/indicators/heading_vacuum_deg_mag_pilot') {
-   setHeadingIndicator(value)
- }
-
-
- if (elementId !== 'unsupported') {
-   document.getElementById(elementId).innerHTML = value
- }
+ // Text
+  if (elementId !== 'unsupported') {
+    document.getElementById(elementId).innerHTML = value
+  }
 })
 
 server.bind(PORT, HOST);
