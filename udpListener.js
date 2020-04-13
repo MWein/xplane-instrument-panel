@@ -1,3 +1,5 @@
+const verticalAirspeedIndicatorSVG = require('./instruments/verticalAirspeed')
+
 const PORT = 49003
 const HOST = '127.0.0.1'
 
@@ -21,9 +23,16 @@ const typeElementIDMap = {
 server.on('message', (buffer, remote) => {
  // Buffer includes space characters that aren't handled by trim()
  const type = buffer.slice(9, buffer.length).toString().replace(/\0/g, '')
- const value = buffer.slice(5, 9).readFloatLE(0).toFixed(2)
+ const value = buffer.slice(5, 9).readFloatLE(0)
 
  const elementId = typeElementIDMap[type] || 'unsupported'
+
+
+ // Graphics
+ if (type === 'sim/flightmodel/position/vh_ind_fpm') {
+   setVerticalAirspeedIndicator(value)
+ }
+
 
  if (elementId !== 'unsupported') {
    document.getElementById(elementId).innerHTML = value
