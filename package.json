@@ -9,7 +9,7 @@
   "repository": "https://github.com/electron/electron-quick-start",
   "author": "Mike Weinberg",
   "devDependencies": {
-    "electron": "^8.2.1"
+    "electron": "^13.6.6"
   },
   "dependencies": {
     "require-text": "0.0.1"
